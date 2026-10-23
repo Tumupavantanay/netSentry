@@ -59,8 +59,9 @@ interface WSPayload {
   isolated_port: number;
 }
 
-const API_BASE = "http://localhost:8000";
-const WS_URL   = "ws://localhost:8000/ws/traffic";
+const API_BASE  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const _wsBase   = API_BASE.replace(/^http/, "ws").replace(/^https/, "wss");
+const WS_URL    = `${_wsBase}/ws/traffic`;
 
 // ─────────────────────────────────────────────
 // Helpers
